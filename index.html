@@ -1,118 +1,75 @@
-
 <!DOCTYPE html>
 <html lang="ur" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sanaullah My Assistant | Social Media Automation</title>
+    <title>Sanaullah Workspace | AI Tools & Productivity</title>
+    
+    <!-- Google tag (gtag.js) Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XTRS1KZ3P1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XTRS1KZ3P1');
+    </script>
+    
     <style>
+        /* ========== ویب سائٹ کا مکمل ڈیزائن ========== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Segoe UI', 'Noto Nastaliq Urdu', system-ui, sans-serif;
         }
 
         body {
-            font-family: 'Segoe UI', 'Noto Nastaliq Urdu', system-ui, sans-serif;
-            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            background: #070b14;
+            color: #eee;
+            overflow-x: hidden;
             min-height: 100vh;
-            color: white;
-            padding: 20px;
         }
 
-        /* Lock Screen Overlay */
-        .lock-overlay {
+        /* چمکتی ریت والا کینوس */
+        canvas {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #0f0c29, #24243e);
-            z-index: 9999;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(20px);
-            transition: 0.5s;
-        }
-        .lock-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(20px);
-            border-radius: 32px;
-            padding: 50px 40px;
-            text-align: center;
-            max-width: 450px;
-            width: 90%;
-            border: 1px solid rgba(255,204,0,0.3);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-        .lock-card h1 {
-            font-size: 32px;
-            background: linear-gradient(135deg, #fff, #ffcc00);
-            background-clip: text;
-            -webkit-background-clip: text;
-            color: transparent;
-            margin-bottom: 20px;
-        }
-        .lock-card p {
-            margin-bottom: 25px;
-            opacity: 0.8;
-        }
-        .lock-card input {
-            width: 100%;
-            padding: 14px 20px;
-            border: 2px solid #ffcc00;
-            border-radius: 50px;
-            background: rgba(0,0,0,0.5);
-            color: white;
-            font-size: 16px;
-            outline: none;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .lock-card button {
-            background: #ffcc00;
-            color: black;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 50px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-        }
-        .error-msg {
-            color: #ff6666;
-            margin-top: 15px;
-            font-size: 14px;
+            z-index: 0;
+            pointer-events: none;
         }
 
         .container {
-            max-width: 1300px;
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
             margin: 0 auto;
-            display: none;
+            padding: 20px;
         }
 
+        /* Header */
         .header {
-            text-align: center;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
             padding: 40px 20px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 28px;
+            text-align: center;
+            border-radius: 24px;
             margin-bottom: 30px;
+            border: 1px solid rgba(255,204,0,0.3);
         }
         .header h1 {
-            font-size: 42px;
+            font-size: 48px;
             background: linear-gradient(135deg, #fff, #ffcc00);
             background-clip: text;
             -webkit-background-clip: text;
             color: transparent;
         }
-        .header h1 span {
-            font-size: 24px;
-            display: inline-block;
-            background: rgba(255,204,0,0.2);
-            padding: 5px 15px;
-            border-radius: 40px;
-            font-size: 16px;
+        .header p {
+            font-size: 18px;
+            margin-top: 10px;
+            opacity: 0.8;
         }
         .glow-line {
             width: 100px;
@@ -120,336 +77,492 @@
             background: #ffcc00;
             margin: 15px auto;
             border-radius: 5px;
-        }
-        .subtitle {
-            color: #ffcc00;
-            font-size: 14px;
-            margin-top: 10px;
+            box-shadow: 0 0 10px #ffcc00;
         }
 
-        .platforms-grid {
+        /* ========== زبان اور سرچ بار ========== */
+        .language-section {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(12px);
+            border-radius: 28px;
+            margin: 30px auto;
+            padding: 30px 20px;
+            max-width: 800px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .language-section h3 {
+            color: #ffcc00;
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+        .search-box {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+        #language-search {
+            flex: 2;
+            min-width: 250px;
+            padding: 14px 20px;
+            border: 2px solid #ffcc00;
+            border-radius: 60px;
+            font-size: 16px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            outline: none;
+        }
+        #language-search:focus {
+            border-color: #fff;
+            box-shadow: 0 0 15px rgba(255,204,0,0.3);
+        }
+        .search-btn {
+            background: #ffcc00;
+            color: black;
+            border: none;
+            padding: 14px 28px;
+            border-radius: 60px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .search-btn:hover {
+            background: #ffaa00;
+            transform: scale(0.98);
+        }
+        .translate-container {
+            background: rgba(0,0,0,0.4);
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+        .translate-note {
+            font-size: 13px;
+            opacity: 0.7;
+            margin-top: 15px;
+        }
+        .popular-langs {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+        }
+        .popular-langs h4 {
+            color: #ffcc00;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .lang-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+        }
+        .lang-tag {
+            background: rgba(255,204,0,0.15);
+            border: 1px solid rgba(255,204,0,0.4);
+            border-radius: 40px;
+            padding: 8px 20px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 14px;
+        }
+        .lang-tag:hover {
+            background: #ffcc00;
+            color: black;
+            transform: translateY(-2px);
+        }
+
+        /* ========== ٹولز کا کنٹینر ========== */
+        .tools-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
-            margin-bottom: 30px;
+            margin: 40px 0;
         }
-        .platform-card {
-            background: rgba(255,255,255,0.08);
+
+        .tool-card {
+            background: rgba(255,255,255,0.05);
             backdrop-filter: blur(12px);
-            border-radius: 24px;
             padding: 25px;
-            text-align: center;
+            border-radius: 20px;
             border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+            text-align: center;
         }
-        .platform-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
+        .tool-card:hover {
+            transform: translateY(-5px);
+            border-color: #ffcc00;
+            box-shadow: 0 0 20px rgba(255,204,0,0.2);
         }
-        .platform-card h3 {
+        .tool-card h3 {
             color: #ffcc00;
             font-size: 24px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
-        .post-preview {
-            background: rgba(0,0,0,0.4);
-            border-radius: 16px;
+        .tool-card p {
+            color: #ccc;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .tool-card button {
+            background: #ffcc00;
+            color: black;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .tool-card button:hover {
+            background: #ffaa00;
+            transform: scale(0.98);
+        }
+
+        /* Tool Content */
+        .tool-content {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        textarea, input, select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            background: #0c0f1a;
+            border: 1px solid #2c2f3a;
+            border-radius: 12px;
+            color: white;
+            outline: none;
+        }
+        textarea:focus, input:focus, select:focus {
+            border-color: #ffcc00;
+        }
+        .result-box {
+            background: #0a0d18;
+            border-radius: 12px;
             padding: 15px;
-            margin: 15px 0;
-            font-size: 13px;
-            line-height: 1.6;
-            text-align: left;
-            direction: ltr;
-            max-height: 150px;
-            overflow-y: auto;
+            margin-top: 15px;
+            border: 1px solid rgba(255,204,0,0.3);
+            font-size: 14px;
         }
         .copy-btn {
             background: #ffcc00;
             color: black;
             border: none;
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-weight: bold;
-            cursor: pointer;
-            margin: 5px;
-        }
-        .auto-section {
-            background: rgba(255,255,255,0.08);
-            backdrop-filter: blur(12px);
-            border-radius: 24px;
-            padding: 25px;
-            margin-top: 20px;
-        }
-        .controls {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin: 20px 0;
-        }
-        .btn {
-            background: #ffcc00;
-            color: black;
-            border: none;
-            padding: 12px 28px;
-            border-radius: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .btn-stop {
-            background: #ff4444;
-            color: white;
-        }
-        .stats {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-        .stat {
-            background: rgba(0,0,0,0.3);
-            padding: 10px 20px;
+            padding: 6px 16px;
             border-radius: 20px;
+            cursor: pointer;
+            margin-top: 10px;
         }
-        .log-box {
-            background: rgba(0,0,0,0.4);
-            border-radius: 16px;
-            padding: 15px;
-            height: 150px;
-            overflow-y: auto;
-            font-size: 12px;
-            margin-top: 15px;
-        }
+
         footer {
             text-align: center;
             padding: 30px;
-            margin-top: 30px;
+            margin-top: 40px;
             border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 12px;
+            font-size: 14px;
+            opacity: 0.7;
         }
-        .owner-badge {
-            position: fixed;
-            bottom: 15px;
-            left: 15px;
-            background: rgba(255,204,0,0.2);
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 11px;
-            z-index: 100;
+        footer h3 {
+            color: #ffcc00;
+            margin-bottom: 8px;
+        }
+
+        @media (max-width: 700px) {
+            .header h1 { font-size: 32px; }
+            .language-section h3 { font-size: 20px; }
         }
     </style>
 </head>
 <body>
 
-<!-- Lock Screen -->
-<div id="lockScreen" class="lock-overlay">
-    <div class="lock-card">
-        <h1>🔐 sanaullah My Assistant</h1>
-        <div class="glow-line"></div>
-        <p>یہ اسسٹنٹ صرف مالک کے لیے ہے<br>براہ کرم پاس ورڈ ڈالیں</p>
-        <input type="password" id="passwordInput" placeholder="پاس ورڈ ڈالیں..." autocomplete="off">
-        <button onclick="verifyPassword()">🔓 میرے اسسٹنٹ میں داخل ہوں</button>
-        <div id="errorMsg" class="error-msg"></div>
-    </div>
-</div>
+<canvas id="sandCanvas"></canvas>
 
-<!-- Main Content -->
-<div id="mainContent" class="container">
+<div class="container">
+    <!-- Header -->
     <div class="header">
-        <h1>🤖 sanaullah <span>My Assistant</span></h1>
+        <h1>Sanaullah Workspace</h1>
         <div class="glow-line"></div>
-        <p class="subtitle">⚡ آپ کا ذاتی آٹومیشن اسسٹنٹ — سوشل میڈیا پوسٹس خودکار</p>
-        <p>📘 Facebook | 📷 Instagram | 🎵 TikTok | 🔗 LinkedIn</p>
+        <p>🤖 AI سے ہر مشکل کام کا آسان حل — Freelancing, Writing, SEO, Coding & Language Tools</p>
     </div>
 
-    <!-- Platforms Grid -->
-    <div class="platforms-grid">
-        <div class="platform-card">
-            <div class="platform-icon">📘</div>
-            <h3>Facebook</h3>
-            <div class="post-preview" id="facebookPost">پوسٹ تیار ہو رہی ہے...</div>
-            <button class="copy-btn" onclick="copyPost('facebookPost')">📋 کاپی کریں</button>
+    <!-- ========== زبان اور سرچ بار ========== -->
+    <div class="language-section">
+        <h3>🌐 اپنی زبان تلاش کریں</h3>
+        <div class="search-box">
+            <input type="text" id="language-search" placeholder="مثال: Urdu, English, Arabic, French, Turkish...">
+            <button class="search-btn" onclick="searchLanguage()">تلاش کریں</button>
         </div>
-        <div class="platform-card">
-            <div class="platform-icon">📷</div>
-            <h3>Instagram</h3>
-            <div class="post-preview" id="instagramPost">پوسٹ تیار ہو رہی ہے...</div>
-            <button class="copy-btn" onclick="copyPost('instagramPost')">📋 کاپی کریں</button>
+        
+        <div class="translate-container">
+            <div id="google_translate_element"></div>
+            <div class="translate-note">
+                💡 اوپر والے باکس میں زبان لکھیں، پھر نیچے والے Google Translate باکس سے منتخب کریں۔
+            </div>
         </div>
-        <div class="platform-card">
-            <div class="platform-icon">🎵</div>
-            <h3>TikTok</h3>
-            <div class="post-preview" id="tiktokPost">پوسٹ تیار ہو رہی ہے...</div>
-            <button class="copy-btn" onclick="copyPost('tiktokPost')">📋 کاپی کریں</button>
-        </div>
-        <div class="platform-card">
-            <div class="platform-icon">🔗</div>
-            <h3>LinkedIn</h3>
-            <div class="post-preview" id="linkedinPost">پوسٹ تیار ہو رہی ہے...</div>
-            <button class="copy-btn" onclick="copyPost('linkedinPost')">📋 کاپی کریں</button>
+
+        <!-- Popular Languages Quick Access -->
+        <div class="popular-langs">
+            <h4>📚 مشہور زبانیں (کلک کریں)</h4>
+            <div class="lang-tags">
+                <span class="lang-tag" onclick="quickSearch('Urdu')">🇵🇰 اردو</span>
+                <span class="lang-tag" onclick="quickSearch('English')">🇬🇧 English</span>
+                <span class="lang-tag" onclick="quickSearch('Arabic')">🇸🇦 العربية</span>
+                <span class="lang-tag" onclick="quickSearch('Hindi')">🇮🇳 हिन्दी</span>
+                <span class="lang-tag" onclick="quickSearch('Spanish')">🇪🇸 Español</span>
+                <span class="lang-tag" onclick="quickSearch('French')">🇫🇷 Français</span>
+                <span class="lang-tag" onclick="quickSearch('German')">🇩🇪 Deutsch</span>
+                <span class="lang-tag" onclick="quickSearch('Turkish')">🇹🇷 Türkçe</span>
+                <span class="lang-tag" onclick="quickSearch('Persian')">🇮🇷 فارسی</span>
+                <span class="lang-tag" onclick="quickSearch('Bengali')">🇧🇩 বাংলা</span>
+                <span class="lang-tag" onclick="quickSearch('Russian')">🇷🇺 Русский</span>
+                <span class="lang-tag" onclick="quickSearch('Chinese')">🇨🇳 中文</span>
+                <span class="lang-tag" onclick="quickSearch('Japanese')">🇯🇵 日本語</span>
+            </div>
         </div>
     </div>
 
-    <!-- Auto Section -->
-    <div class="auto-section">
-        <h3>🤖 آٹو پوسٹ جنریٹر — ہر 30 سیکنڈ بعد نئی پوسٹ</h3>
-        <div class="controls">
-            <button class="btn" id="startBtn" onclick="startAutoPost()">▶ شروع کریں</button>
-            <button class="btn btn-stop" id="stopBtn" onclick="stopAutoPost()">⏸ روکیں</button>
-            <button class="btn" onclick="generateAllPosts()">⚡ ابھی پوسٹ بنائیں</button>
+    <!-- ========== ٹولز کا کنٹینر ========== -->
+    <div class="tools-container">
+        <!-- Tool 1: Freelance Assistant -->
+        <div class="tool-card">
+            <h3>🤖 Freelance Assistant</h3>
+            <p>AI کی مدد سے پرووزل اور نگ ڈسکریشن لکھیں۔</p>
+            <div class="tool-content">
+                <select id="taskType">
+                    <option value="upwork">📘 Upwork Proposal</option>
+                    <option value="fiverr">🎵 Fiverr Gig Description</option>
+                    <option value="freelancer">💼 Freelancer.com Bid</option>
+                    <option value="linkedin">🔗 LinkedIn Connection Message</option>
+                </select>
+                <input type="text" id="userTopic" placeholder="کام کا نام لکھیں (مثال: Google Sheets Automation)">
+                <button onclick="generateAIAnswer()">Generate Proposal</button>
+                <div id="aiResponse" class="result-box">✨ جواب یہاں آئے گا</div>
+            </div>
         </div>
-        <div class="stats">
-            <div class="stat">📊 پوسٹس جنریٹ: <span id="postCount">0</span></div>
-            <div class="stat">🔄 سائیکل: <span id="cycleCount">0</span></div>
-            <div class="stat">⏰ اگلی پوسٹ: <span id="timer">00:00</span></div>
+
+        <!-- Tool 2: Content Writer -->
+        <div class="tool-card">
+            <h3>✍️ Content Writer</h3>
+            <p>AI کے ساتھ بہترین آرٹیکل اور مواد تیار کریں۔</p>
+            <div class="tool-content">
+                <textarea id="contentInput" rows="3" placeholder="اپنا مواد یہاں لکھیں..."></textarea>
+                <button onclick="convertContent('upper')">UPPERCASE</button>
+                <button onclick="convertContent('lower')">lowercase</button>
+                <button onclick="convertContent('capitalize')">Capitalize</button>
+                <div id="contentResult" class="result-box">📝 نتیجہ یہاں آئے گا</div>
+            </div>
         </div>
-        <div class="log-box" id="logBox"><div>✨ sanaullah My Assistant تیار ہے</div></div>
+
+        <!-- Tool 3: SEO Optimizer -->
+        <div class="tool-card">
+            <h3>📈 SEO Optimizer</h3>
+            <p>اپنے آرٹیکل اور ویب سائٹ SEO کے مطابق بنائیں۔</p>
+            <div class="tool-content">
+                <input type="text" id="seoKeyword" placeholder="مطلوبہ لفظ">
+                <textarea id="seoContent" rows="3" placeholder="اپنا آرٹیکل لکھیں..."></textarea>
+                <button onclick="optimizeSEO()">SEO Optimize کریں</button>
+                <div id="seoResult" class="result-box">📊 SEO تجاویز یہاں ہوں گی</div>
+            </div>
+        </div>
+
+        <!-- Tool 4: Code Helper -->
+        <div class="tool-card">
+            <h3>💻 Code Helper</h3>
+            <p>کوڈنگ میں AI اسسٹنٹ سے مدد حاصل کریں۔</p>
+            <div class="tool-content">
+                <select id="codeLanguage">
+                    <option value="html">HTML</option>
+                    <option value="css">CSS</option>
+                    <option value="javascript">JavaScript</option>
+                    <option value="python">Python</option>
+                </select>
+                <textarea id="codeQuestion" rows="3" placeholder="اپنا سوال لکھیں..."></textarea>
+                <button onclick="generateCodeHelp()">Code Helper سے پوچھیں</button>
+                <div id="codeResult" class="result-box">⚙️ کوڈ کا جواب یہاں آئے گا</div>
+            </div>
+        </div>
     </div>
 
     <footer>
-        💡 پوسٹ کاپی کریں → اپنے اکاؤنٹ میں Paste کریں → پوسٹ کریں<br>
-        🤖 یہ آپ کا ذاتی اسسٹنٹ ہے — صرف آپ استعمال کر سکتے ہیں
+        <h3>Sanaullah Workspace</h3>
+        <p>AI Powered Digital Platform — Freelance | Content | SEO | Code | Translation</p>
+        <p>© 2026 All Rights Reserved</p>
     </footer>
 </div>
 
-<div class="owner-badge">
-    🔐 sanaullah | Owner Only
-</div>
-
 <script>
-    // ========== PASSWORD ==========
-    const CORRECT_PASSWORD = "sanaullahMastoi1111@#";
-    let isUnlocked = false;
+    // ========== GOOGLE TRANSLATE ==========
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'ur',
+            autoDisplay: false,
+            includedLanguages: 'ur,en,ar,hi,es,fr,de,tr,fa,bn,ru,zh-CN,ja,ko,it,pt'
+        }, 'google_translate_element');
+    }
 
-    function verifyPassword() {
-        let inputPass = document.getElementById("passwordInput").value;
-        let errorDiv = document.getElementById("errorMsg");
+    function searchLanguage() {
+        let searchLang = document.getElementById("language-search").value.trim();
+        if (searchLang === "") {
+            alert("براہ کرم کوئی زبان لکھیں!");
+            return;
+        }
         
-        if (inputPass === CORRECT_PASSWORD) {
-            isUnlocked = true;
-            document.getElementById("lockScreen").style.display = "none";
-            document.getElementById("mainContent").style.display = "block";
-            errorDiv.innerHTML = "";
-            generateAllPosts();
-            addLog("🔓 sanaullah My Assistant انلاک ہو گیا! خوش آمدید");
+        let select = document.querySelector('.goog-te-combo');
+        if (select) {
+            let found = false;
+            for (let i = 0; i < select.options.length; i++) {
+                let optionText = select.options[i].text.toLowerCase();
+                let searchLower = searchLang.toLowerCase();
+                if (optionText.includes(searchLower) || searchLower.includes(optionText.split(' ')[0])) {
+                    select.selectedIndex = i;
+                    select.dispatchEvent(new Event('change'));
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                alert("⚠️ یہ زبان اس وقت دستیاب نہیں۔");
+            }
         } else {
-            errorDiv.innerHTML = "❌ غلط پاس ورڈ! صرف مالک داخل ہو سکتا ہے۔";
-            document.getElementById("passwordInput").value = "";
+            alert("⚠️ براہ کرم Google Translate کے لوڈ ہونے کا انتظار کریں۔");
         }
     }
 
-    document.getElementById("passwordInput").addEventListener("keypress", function(e) {
-        if (e.key === "Enter") verifyPassword();
-    });
-
-    // ========== POST GENERATION ==========
-    const postTopics = [
-        "AI اور فری لانسنگ", "آٹومیشن کے فائدے", "Upwork ٹپس", "Fiverr گگ آئیڈیاز",
-        "SEO ٹپس", "کونٹینٹ رائٹنگ", "کوڈنگ ہیلپ", "فری لانس کامیابی",
-        "ٹائم مینجمنٹ", "آل ان ون ٹولز", "ویب ڈیزائن", "ڈیجیٹل مارکیٹنگ"
-    ];
-
-    function getRandomTopic() {
-        return postTopics[Math.floor(Math.random() * postTopics.length)];
+    function quickSearch(lang) {
+        document.getElementById("language-search").value = lang;
+        searchLanguage();
     }
 
-    function generateFacebookPost() {
-        let topic = getRandomTopic();
-        let time = ["صبح", "دوپہر", "شام", "رات"][Math.floor(Math.random() * 4)];
-        return `🕒 ${time} کی پوسٹ\n\n${topic} کے بارے میں جاننا چاہتے ہیں؟\n\n✅ آج ہی شروع کریں\n✅ AI سے کام کرو\n✅ فری لانسنگ میں کامیابی\n\n#Freelancing #Automation #AI\n\n👇 کمنٹ میں بتائیں آپ کیا سیکھنا چاہتے ہیں؟`;
-    }
-
-    function generateInstagramPost() {
-        let topic = getRandomTopic();
-        return `✨ ${topic} ✨\n\nآج ہی اپنے کام کو آسان بنائیں!\n\n👉 لنک بائیو میں ہے\n👉 فالو کریں مزید ٹپس کے لیے\n\n#freelancing #automation #aitools #socialmedia #viral`;
-    }
-
-    function generateTikTokPost() {
-        let topic = getRandomTopic();
-        return `🎵 ${topic} 🎵\n\n💡 سیکھیں آسان طریقے\n💡 کام کرو گھر بیٹھے\n💡 AI سے مدد لو\n\n#foryou #freelancing #automation #aitools #trending`;
-    }
-
-    function generateLinkedinPost() {
-        let topic = getRandomTopic();
-        return `🚀 ${topic}\n\nAs a freelancer, I've learned that consistency is key.\n\n✅ Use AI tools\n✅ Stay updated\n✅ Network with others\n\nWhat's your biggest challenge in freelancing? Share below!\n\n#Freelancing #Automation #ArtificialIntelligence #Productivity #CareerGrowth`;
-    }
-
-    let postCount = 0, cycleCount = 0;
-    function generateAllPosts() {
-        document.getElementById("facebookPost").innerHTML = generateFacebookPost().replace(/\n/g, '<br>');
-        document.getElementById("instagramPost").innerHTML = generateInstagramPost().replace(/\n/g, '<br>');
-        document.getElementById("tiktokPost").innerHTML = generateTikTokPost().replace(/\n/g, '<br>');
-        document.getElementById("linkedinPost").innerHTML = generateLinkedinPost().replace(/\n/g, '<br>');
-        postCount++;
-        document.getElementById("postCount").innerText = postCount;
-        addLog("✅ نئی پوسٹس تیار ہو گئیں");
-        return true;
-    }
-
-    function copyPost(elementId) {
-        let element = document.getElementById(elementId);
-        let text = element.innerText;
+    // ========== HELPER: COPY FUNCTION ==========
+    function universalCopy(elementId) {
+        let el = document.getElementById(elementId);
+        let text = el.innerText || el.textContent;
         let temp = document.createElement("textarea");
         temp.value = text;
         document.body.appendChild(temp);
         temp.select();
-        let success = false;
-        try { success = document.execCommand("copy"); } catch(e) {}
+        try { document.execCommand("copy"); } catch(e) {}
         document.body.removeChild(temp);
-        let platform = elementId.replace("Post", "");
-        if (success) {
-            addLog(`📋 ${platform} کی پوسٹ کاپی ہو گئی`);
-            alert(`✅ ${platform} کی پوسٹ کاپی ہو گئی! اب اپنے ${platform} اکاؤنٹ میں Paste کریں۔`);
-        } else {
-            alert("❌ کاپی نہیں ہو سکی");
+        alert("✅ متن کاپی ہو گیا!");
+    }
+
+    // ========== TOOL 1: Freelance Assistant ==========
+    function generateAIAnswer() {
+        let task = document.getElementById("taskType").value;
+        let topic = document.getElementById("userTopic").value.trim();
+        if (!topic) {
+            document.getElementById("aiResponse").innerHTML = "⚠️ براہ کرم کام کا نام لکھیں!";
+            return;
         }
+        
+        let responses = {
+            upwork: `Hi Client, I have reviewed your project requirements for ${topic}. I am an expert in this field and can deliver efficiently.\n\nBest regards,\nSanaullah`,
+            fiverr: `Are you looking for high-quality ${topic} services? I specialize in delivering professional results with fast turnaround.\n\nRegards,\nSanaullah`,
+            freelancer: `Hi, I am interested in your project about ${topic}. I can complete this task within your budget and timeline.\n\nThanks,\nSanaullah`,
+            linkedin: `Hi, I noticed you are working on ${topic}. I specialize in automation and productivity solutions. Would love to connect.\n\nBest,\nSanaullah`
+        };
+        
+        let result = responses[task];
+        let uid = "freelance_" + Date.now();
+        document.getElementById("aiResponse").innerHTML = `<div id="${uid}" style="text-align:left; direction:ltr; white-space:pre-wrap;">${result.replace(/\n/g,'<br>')}</div><button class="copy-btn" onclick="universalCopy('${uid}')">📋 کاپی کریں</button>`;
     }
 
-    function addLog(message) {
-        let logBox = document.getElementById("logBox");
-        let div = document.createElement("div");
-        let time = new Date().toLocaleTimeString();
-        div.innerHTML = `[${time}] ${message}`;
-        logBox.appendChild(div);
-        logBox.scrollTop = logBox.scrollHeight;
-        while (logBox.children.length > 20) logBox.removeChild(logBox.firstChild);
+    // ========== TOOL 2: Content Writer ==========
+    function convertContent(type) {
+        let txt = document.getElementById("contentInput").value;
+        if (!txt) { document.getElementById("contentResult").innerHTML = "⚠️ پہلے کچھ لکھیں!"; return; }
+        let res = "";
+        if (type === 'upper') res = txt.toUpperCase();
+        else if (type === 'lower') res = txt.toLowerCase();
+        else if (type === 'capitalize') res = txt.toLowerCase().replace(/(^|\s)\S/g, L => L.toUpperCase());
+        let uid = "content_" + Date.now();
+        document.getElementById("contentResult").innerHTML = `<div id="${uid}">${res}</div><button class="copy-btn" onclick="universalCopy('${uid}')">📋 کاپی کریں</button>`;
     }
 
-    // Auto Post System
-    let autoRunning = false, autoInterval = null, timerSeconds = 0, timerInterval = null;
-    function updateTimer() {
-        if (!autoRunning) { document.getElementById("timer").innerText = "00:00"; return; }
-        let mins = Math.floor(timerSeconds / 60), secs = timerSeconds % 60;
-        document.getElementById("timer").innerText = `${mins.toString().padStart(2,'0')}:${secs.toString().padStart(2,'0')}`;
-        if (timerSeconds > 0) timerSeconds--;
-        else if (autoRunning) { autoCycle(); timerSeconds = 30; }
+    // ========== TOOL 3: SEO Optimizer ==========
+    function optimizeSEO() {
+        let kw = document.getElementById("seoKeyword").value.trim();
+        if (!kw) { document.getElementById("seoResult").innerHTML = "⚠️ مطلوبہ لفظ لکھیں!"; return; }
+        let tips = `🔍 SEO تجاویز "${kw}":<br>✅ عنوان میں ${kw} ڈالیں۔<br>✅ پہلے 100 الفاظ میں ${kw} لائیں۔<br>✅ Meta description میں ${kw} لکھیں۔<br>✅ تصاویر میں alt text ${kw} رکھیں۔`;
+        let uid = "seo_" + Date.now();
+        document.getElementById("seoResult").innerHTML = `<div id="${uid}">${tips}</div><button class="copy-btn" onclick="universalCopy('${uid}')">📋 کاپی کریں</button>`;
     }
-    function autoCycle() {
-        if (!autoRunning) return;
-        cycleCount++;
-        document.getElementById("cycleCount").innerText = cycleCount;
-        addLog(`🔄 سائیکل #${cycleCount} — نئی پوسٹس تیار ہو رہی ہیں...`);
-        generateAllPosts();
-        addLog(`✅ سائیکل #${cycleCount} مکمل`);
+
+    // ========== TOOL 4: Code Helper ==========
+    function generateCodeHelp() {
+        let lang = document.getElementById("codeLanguage").value;
+        let q = document.getElementById("codeQuestion").value.trim();
+        if (!q) { document.getElementById("codeResult").innerHTML = "⚠️ اپنا سوال لکھیں!"; return; }
+        let samples = {
+            html: `<!-- ${q} کے لیے HTML -->\n<div class="card">\n  <h3>عنوان</h3>\n  <p>مواد یہاں لکھیں</p>\n</div>`,
+            css: `/* ${q} کے لیے CSS */\n.card {\n  background: #111;\n  border-radius: 20px;\n  padding: 20px;\n}`,
+            javascript: `// ${q} کے لیے JavaScript\nfunction handleClick() {\n  alert("ہیلو ورلڈ");\n}`,
+            python: `# ${q} کے لیے Python\ndef my_function():\n    print("ہیلو ورلڈ")\n    return True`
+        };
+        let code = samples[lang];
+        let uid = "code_" + Date.now();
+        document.getElementById("codeResult").innerHTML = `<div id="${uid}" style="background:#05080f; padding:12px; border-radius:12px; font-family:monospace; text-align:left; direction:ltr;">${code.replace(/\n/g,'<br>')}</div><button class="copy-btn" onclick="universalCopy('${uid}')">📋 کاپی کریں</button>`;
     }
-    function startAutoPost() {
-        if (autoRunning) { addLog("⚠️ پہلے سے چل رہا ہے"); return; }
-        autoRunning = true;
-        timerSeconds = 5;
-        if (timerInterval) clearInterval(timerInterval);
-        timerInterval = setInterval(updateTimer, 1000);
-        addLog("🚀 آٹو پوسٹ شروع — ہر 30 سیکنڈ بعد نئی پوسٹیں");
-        generateAllPosts();
-        timerSeconds = 30;
+</script>
+
+<!-- Google Translate Script -->
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<script>
+    // ========== گولڈن ریت + چمکتی بلبیں (پس منظر) ==========
+    const canvas = document.getElementById('sandCanvas');
+    const ctx = canvas.getContext('2d');
+    function resizeCanvas() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    let particles = [];
+    for (let i = 0; i < 180; i++) {
+        particles.push({
+            x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+            size: Math.random() * 3 + 1, dx: (Math.random() - 0.5) * 0.5, dy: (Math.random() - 0.5) * 0.3 + 0.2,
+            alpha: Math.random() * 0.5 + 0.3, glow: Math.random() * 0.8 + 0.3
+        });
     }
-    function stopAutoPost() {
-        if (!autoRunning) { addLog("⚠️ پہلے سے بند ہے"); return; }
-        autoRunning = false;
-        if (timerInterval) clearInterval(timerInterval);
-        timerInterval = null;
-        addLog("⏸ آٹو پوسٹ روک دیا گیا");
-        document.getElementById("timer").innerText = "00:00";
+    let time = 0;
+    function draw() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        time += 0.02;
+        let pulse = Math.sin(time) * 0.3 + 0.7;
+        for (let p of particles) {
+            let bright = (Math.sin(time * 2 + p.x * 0.01) * 0.3 + 0.7) * p.glow * pulse;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, ${180 + Math.floor(70 * bright)}, 40, ${p.alpha * bright})`;
+            ctx.shadowBlur = 12 * bright;
+            ctx.shadowColor = `rgba(255, 200, 40, 0.9)`;
+            ctx.fill();
+            p.x += p.dx; p.y += p.dy;
+            if (p.x < -50) p.x = canvas.width + 40;
+            if (p.x > canvas.width + 50) p.x = -40;
+            if (p.y < -50) p.y = canvas.height + 40;
+            if (p.y > canvas.height + 50) p.y = -40;
+        }
+        if (!window.bulbs) {
+            window.bulbs = [];
+            for (let i = 0; i < 40; i++) window.bulbs.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, radius: Math.random() * 5 + 2, speed: 0.5 + Math.random() * 1.5 });
+        }
+        for (let i = 0; i < window.bulbs.length; i++) {
+            let b = window.bulbs[i];
+            let flick = Math.sin(time * b.speed + i) * 0.5 + 0.5;
+            ctx.beginPath();
+            ctx.arc(b.x, b.y, b.radius * (0.7 + flick * 0.6), 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(255, 210, 70, ${0.25 + flick * 0.4})`;
+            ctx.shadowBlur = 18 * flick;
+            ctx.fill();
+        }
+        requestAnimationFrame(draw);
     }
+    draw();
 </script>
 </body>
 </html>
