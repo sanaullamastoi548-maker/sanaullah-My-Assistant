@@ -4,15 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sanaullah Workspace | AI Tools & Productivity</title>
+
+    <!-- Google tag (gtag.js) --> <script async src="https://www.googletagmanager.com/gtag/js?id=G-XTRS1KZ3P1"></script> 
     
-    <!-- Google tag (gtag.js) Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XTRS1KZ3P1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-XTRS1KZ3P1');
-    </script>
+ <script> window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-XTRS1KZ3P1'); </script>
     
     <style>
         /* ========== ویب سائٹ کا مکمل ڈیزائن ========== */
@@ -221,7 +216,7 @@
             transform: scale(0.98);
         }
 
-        /* Tool Content */
+        /* Tool Content (for each tool's inner functionality) */
         .tool-content {
             margin-top: 20px;
             padding-top: 15px;
@@ -321,13 +316,15 @@
                 <span class="lang-tag" onclick="quickSearch('Russian')">🇷🇺 Русский</span>
                 <span class="lang-tag" onclick="quickSearch('Chinese')">🇨🇳 中文</span>
                 <span class="lang-tag" onclick="quickSearch('Japanese')">🇯🇵 日本語</span>
+                <span class="lang-tag" onclick="quickSearch('Italian')">🇮🇹 Italiano</span>
+                <span class="lang-tag" onclick="quickSearch('Portuguese')">🇵🇹 Português</span>
             </div>
         </div>
     </div>
 
     <!-- ========== ٹولز کا کنٹینر ========== -->
     <div class="tools-container">
-        <!-- Tool 1: Freelance Assistant -->
+        <!-- Tool 1: Freelance Assistant (تمام آپشنز کے ساتھ) -->
         <div class="tool-card">
             <h3>🤖 Freelance Assistant</h3>
             <p>AI کی مدد سے پرووزل اور نگ ڈسکریشن لکھیں۔</p>
@@ -395,12 +392,12 @@
 </div>
 
 <script>
-    // ========== GOOGLE TRANSLATE ==========
+    // ========== GOOGLE TRANSLATE (مکمل زبانوں کے ساتھ) ==========
     function googleTranslateElementInit() {
         new google.translate.TranslateElement({
             pageLanguage: 'ur',
             autoDisplay: false,
-            includedLanguages: 'ur,en,ar,hi,es,fr,de,tr,fa,bn,ru,zh-CN,ja,ko,it,pt'
+            includedLanguages: 'ur,en,ar,hi,es,fr,de,tr,fa,bn,ru,zh-CN,ja,ko,it,pt,nl,sv,pl,th,he,id,ms,vi,ro,el,cs,hu,no,da,fi,hr,sk,sr,bg,uk,hi,ta,te,ml,kn,gu,pa,ne,sd,ps,so,sw,am,az,ka,km,lo,my,mn,ne,si,tg,uz'
         }, 'google_translate_element');
     }
 
@@ -450,7 +447,7 @@
         alert("✅ متن کاپی ہو گیا!");
     }
 
-    // ========== TOOL 1: Freelance Assistant ==========
+    // ========== TOOL 1: Freelance Assistant (تمام آپشنز کے ساتھ) ==========
     function generateAIAnswer() {
         let task = document.getElementById("taskType").value;
         let topic = document.getElementById("userTopic").value.trim();
@@ -460,10 +457,10 @@
         }
         
         let responses = {
-            upwork: `Hi Client, I have reviewed your project requirements for ${topic}. I am an expert in this field and can deliver efficiently.\n\nBest regards,\nSanaullah`,
-            fiverr: `Are you looking for high-quality ${topic} services? I specialize in delivering professional results with fast turnaround.\n\nRegards,\nSanaullah`,
-            freelancer: `Hi, I am interested in your project about ${topic}. I can complete this task within your budget and timeline.\n\nThanks,\nSanaullah`,
-            linkedin: `Hi, I noticed you are working on ${topic}. I specialize in automation and productivity solutions. Would love to connect.\n\nBest,\nSanaullah`
+            upwork: `Hi Client, I have reviewed your project requirements for ${topic}. I am an expert in this field and can deliver efficiently. I have completed similar projects successfully. Let's discuss your specific needs.\n\nBest regards,\nSanaullah`,
+            fiverr: `Are you looking for high-quality ${topic} services? I specialize in delivering professional results with fast turnaround. Satisfaction guaranteed!\n\nOrder now and let's get started.\n\nRegards,\nSanaullah`,
+            freelancer: `Hi, I am interested in your project about ${topic}. I can complete this task within your budget and timeline. Please check my profile for similar work. Ready to start immediately!\n\nThanks,\nSanaullah`,
+            linkedin: `Hi, I noticed you are working on ${topic}. I specialize in automation and productivity solutions. Would love to connect and discuss how we can collaborate.\n\nBest,\nSanaullah`
         };
         
         let result = responses[task];
@@ -487,7 +484,7 @@
     function optimizeSEO() {
         let kw = document.getElementById("seoKeyword").value.trim();
         if (!kw) { document.getElementById("seoResult").innerHTML = "⚠️ مطلوبہ لفظ لکھیں!"; return; }
-        let tips = `🔍 SEO تجاویز "${kw}":<br>✅ عنوان میں ${kw} ڈالیں۔<br>✅ پہلے 100 الفاظ میں ${kw} لائیں۔<br>✅ Meta description میں ${kw} لکھیں۔<br>✅ تصاویر میں alt text ${kw} رکھیں۔`;
+        let tips = `🔍 SEO تجاویز "${kw}":<br>✅ عنوان میں ${kw} ڈالیں۔<br>✅ پہلے 100 الفاظ میں ${kw} لائیں۔<br>✅ Meta description میں ${kw} لکھیں۔<br>✅ تصاویر میں alt text ${kw} رکھیں۔<br>✅ URLs میں ${kw} استعمال کریں۔`;
         let uid = "seo_" + Date.now();
         document.getElementById("seoResult").innerHTML = `<div id="${uid}">${tips}</div><button class="copy-btn" onclick="universalCopy('${uid}')">📋 کاپی کریں</button>`;
     }
